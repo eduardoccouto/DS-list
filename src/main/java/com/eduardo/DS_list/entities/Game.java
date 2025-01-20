@@ -1,9 +1,6 @@
 package com.eduardo.DS_list.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 
@@ -12,9 +9,11 @@ import java.util.Objects;
 
 public class Game {
     @Id //Define como chave primária
-    @GeneratedValue // Define ID como autoincrement
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Define ID como autoincrement
     private Long id;
     private String title;
+
+    @Column(name = "game_year") //costumizando o nome da coluna
     private Integer year;
     private String genre;
     private String platforms;
