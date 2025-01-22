@@ -1,7 +1,9 @@
 package com.eduardo.DS_list.controllers;
 
 import com.eduardo.DS_list.dto.GameDTO;
+import com.eduardo.DS_list.dto.GameListDTO;
 import com.eduardo.DS_list.dto.GameMinDTO;
+import com.eduardo.DS_list.services.GameListService;
 import com.eduardo.DS_list.services.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,22 +14,18 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/games")
-public class GameController {
+@RequestMapping(value = "/lists")
+public class GameListController {
 
     @Autowired
-    private GameService gameService;
+    private GameListService gameListService;
 
     @GetMapping
-    public List<GameMinDTO> findAll() {
+    public List <GameListDTO> findAll() {
 
-       return gameService.findAll();
+       return gameListService.findAll();
     }
 
-    @GetMapping(value = "/{id}")
-    public GameDTO findById(@PathVariable Long id) {
 
-        return gameService.findByID(id);
-    }
 
 }
