@@ -4,6 +4,7 @@ package com.eduardo.DS_list.services;
 import com.eduardo.DS_list.dto.GameDTO;
 import com.eduardo.DS_list.dto.GameMinDTO;
 import com.eduardo.DS_list.entities.Game;
+import com.eduardo.DS_list.projections.GameMinProjection;
 import com.eduardo.DS_list.repositories.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,14 @@ public class GameService {
         //INSERIR UM TRATAMENTO DE EXCEÇÃO
         Game result = gameRepository.findById(id).get();
         return new GameDTO(result);
+
+    }
+
+    @Transactional(readOnly = true)
+    public List<GameMinDTO> findByList(Long listId){
+        List <GameMinProjection> result = gameRepository.searchByList(listId);
+        return result.stream().map(x -> new GameMinDTO(x)).toList();
+
 
     }
 }
